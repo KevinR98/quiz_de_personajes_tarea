@@ -236,14 +236,18 @@ public class MainActivity extends AppCompatActivity {
         Log.i("Log", images.get(correctAnswerIndex));
 
 
+        int randomList [] = getRandomList(characters.size());
+        int indexOfRandomList = 0;
         for(int i = 0 ; i < 3 ; ++i){
-            randomNumber = random.nextInt(characters.size());
+            randomNumber = randomList[indexOfRandomList];
+            if(randomNumber == correctAnswerIndex) randomNumber = randomList[++indexOfRandomList];
 
             if(options[i] == null){
                 options[i] = characters.get(randomNumber);
             } else {
                 options[i+1] = characters.get(randomNumber);
             }
+            ++indexOfRandomList;
         }
 
         firstOption.setText(options[0]);
